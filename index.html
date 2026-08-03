@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aesthetx: Reddit Report, Cycle 1 | M81</title>
+<link rel="icon" type="image/png" href="m81-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1c1611; --navy2:#c2570e; --accent:#f96a16; --ink:#1c1815;
+    --muted:#8a7d6e; --line:#ece3d7; --bg:#fbf5ee; --card:#ffffff;
+    --green:#2e7d52; --red:#b3402f; --wait:#b06a12; --wait-bg:#fbeede;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--navy2)}
+  h1,h2,.card-title{font-family:'Space Grotesk','Inter',sans-serif; letter-spacing:-.01em}
+
+  /* ===== hero (compact) ===== */
+  .hero{position:relative; overflow:hidden; padding:38px 24px 44px; color:var(--ink);
+    background:
+      radial-gradient(900px 520px at 90% -14%, rgba(249,106,22,.26), transparent 58%),
+      radial-gradient(680px 460px at 0% 118%, rgba(249,106,22,.12), transparent 58%),
+      linear-gradient(165deg,#fff6ec 0%, #fbefe3 55%, #f6e8d8 100%);}
+  .hero-rings{position:absolute; z-index:1; top:-330px; right:-280px; width:760px; height:760px; pointer-events:none; border-radius:50%;
+    background:repeating-radial-gradient(circle at center, transparent 0 55px, rgba(249,106,22,.11) 55px 57px);
+    -webkit-mask-image:radial-gradient(circle at center,#000,transparent 70%); mask-image:radial-gradient(circle at center,#000,transparent 70%);}
+  .hero::after{content:""; position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.6;
+    background-image:radial-gradient(rgba(28,22,17,.07) 1px, transparent 1.5px); background-size:23px 23px;
+    -webkit-mask-image:linear-gradient(172deg,#000 16%,transparent 70%); mask-image:linear-gradient(172deg,#000 16%,transparent 70%);}
+  .hero-inner{position:relative; z-index:3; max-width:1080px; margin:0 auto}
+  .brandrow{display:flex; align-items:center; gap:13px; margin-bottom:26px}
+  .brandrow .brandmark{height:38px; width:auto; display:block}
+  .brandrow .bl1{font-family:'Space Grotesk',sans-serif; font-size:17px; color:#1c1815; font-weight:500}
+  .brandrow .bl1 b{font-weight:700}
+  .brandrow .bl-dot{color:var(--accent); font-weight:700; margin:0 4px}
+  .brandrow .bl2{font-size:11.5px; color:#9a8c7c; margin-top:3px; letter-spacing:.06em; text-transform:uppercase}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:clamp(30px,4.2vw,46px); line-height:1.06;
+    letter-spacing:-.02em; margin:0 0 16px; max-width:20ch; color:#1c1815; font-weight:700}
+  .hero h1 .hl{color:var(--accent); border-bottom:5px solid rgba(249,106,22,.30); padding-bottom:1px}
+  .claim{font-size:16px; line-height:1.5; color:#4a4038; max-width:70ch; margin:0 0 20px}
+  .hero .prepared{display:inline-block; color:#7a6e60; font-size:12.5px; letter-spacing:.04em; margin:0;
+    background:rgba(255,255,255,.62); border:1px solid #efe2d3; border-radius:999px; padding:8px 16px}
+
+  /* ===== layout ===== */
+  .wrap{max-width:1080px; margin:0 auto; padding:44px 24px 10px}
+  .block{margin-top:52px}
+  .block:first-child{margin-top:0}
+  .block-head h2{margin:0; font-size:23px; color:var(--navy); font-weight:700; display:flex; align-items:center; gap:12px}
+  .block-head h2::before{content:""; width:5px; height:24px; background:var(--accent); border-radius:3px; display:inline-block}
+  .block-head p{margin:6px 0 0 17px; color:var(--muted); font-size:14px; max-width:80ch}
+
+  /* ===== TL;DR metric cards ===== */
+  .metrics{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:22px}
+  .metric{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px 22px;
+    box-shadow:0 4px 16px rgba(28,22,17,.05); position:relative; overflow:hidden}
+  .metric::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--accent)}
+  .metric .mval{font-family:'Space Grotesk',sans-serif; font-size:46px; font-weight:700; color:var(--navy); line-height:1; letter-spacing:-.02em}
+  .metric .mlab{margin-top:9px; font-size:11.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); font-weight:700}
+  .metric .mnote{margin-top:7px; font-size:13px; color:var(--muted)}
+
+  /* ===== TBD placeholder ===== */
+  .tbd{display:inline-block; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-weight:700;
+    color:var(--wait); background:var(--wait-bg); border:1px dashed #e0b17c; border-radius:8px; padding:4px 11px; font-size:13px; letter-spacing:0}
+  .mval .tbd{font-size:19px; padding:8px 14px}
+
+  /* ===== top subreddits ===== */
+  .subs{display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:22px}
+  .subcard{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 16px;
+    box-shadow:0 4px 16px rgba(28,22,17,.05); text-align:center}
+  .subcard .srank{display:inline-grid; place-items:center; width:26px; height:26px; border-radius:8px;
+    background:#fdeee1; color:#c2570e; font-weight:700; font-size:13px; margin-bottom:11px}
+  .subcard .sname{font-weight:700; font-size:14px; color:var(--ink); word-break:break-word}
+  .subcard .scount{margin-top:5px; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); font-weight:700}
+
+  /* ===== comment index table ===== */
+  .table-wrap{background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden; margin-top:22px; box-shadow:0 4px 16px rgba(28,22,17,.05)}
+  table{width:100%; border-collapse:collapse; font-size:14px}
+  thead th{background:#1c1611; color:#fff; text-align:left; font-weight:600; padding:13px 16px; font-size:12.5px; letter-spacing:.03em}
+  tbody td{padding:13px 16px; border-top:1px solid var(--line); vertical-align:middle}
+  tbody tr:nth-child(even){background:#fdf8f1}
+  td.num{color:var(--muted); width:54px; font-weight:600}
+  .sub-sm{color:var(--navy2); font-weight:700; width:190px}
+  td.ctitle{color:var(--ink); font-weight:600}
+  .repcell{width:110px}
+  .repcell a{color:var(--navy2); font-weight:600; text-decoration:none; white-space:nowrap}
+  .repcell a:hover{text-decoration:underline}
+
+  /* ===== highlight cards ===== */
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; margin-top:22px; overflow:hidden; box-shadow:0 4px 16px rgba(28,22,17,.05); scroll-margin-top:18px}
+  .card-head{padding:22px 24px 20px; border-bottom:1px solid var(--line); background:#fcfaf7}
+  .card-meta{font-size:13px; color:var(--muted); display:flex; align-items:center; gap:9px; flex-wrap:wrap}
+  .card-meta .sub{color:var(--navy2); font-weight:700}
+  .card-meta .dot{color:#d8cab8}
+  .cpill{background:#fdeee1; color:#c2570e; border:1px solid #f6d9c2; font-size:12px; font-weight:700; padding:4px 12px; border-radius:999px; display:inline-block}
+  .cpill.one{background:#e6f4ec; color:var(--green); border-color:#c7e6d4}
+  .kw-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px}
+  .kw-label{font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:700; margin-right:4px; width:100%}
+  .kw{background:#fdeee1; color:#9a3f06; border:1px solid #f6d9c2; padding:5px 12px; border-radius:999px; font-size:13.5px; font-weight:600}
+
+  /* ===== recreated reddit post ===== */
+  .rpost{background:#fff; border:1px solid #e3e0da; border-radius:14px; padding:20px 22px 22px; margin:14px 0 18px;
+    box-shadow:0 1px 3px rgba(28,22,17,.05)}
+  .rpost-head{display:flex; align-items:center; gap:10px; margin-bottom:13px}
+  .rav{width:36px; height:36px; border-radius:50%; flex:none; display:grid; place-items:center;
+    color:#fff; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14px; letter-spacing:.02em}
+  .rav.sf{background:linear-gradient(140deg,#f4a6b6 0%,#d4657f 100%)}
+  .rav.mke{background:linear-gradient(140deg,#f2c14e 0%,#2c6ea4 100%)}
+  .rsubname{font-size:13.5px; font-weight:700; color:#1c1c1c}
+  .rsubname .rdot{color:#9a948d; font-weight:400; margin:0 5px}
+  .rsubname .rtime{color:#6e6862; font-weight:400}
+  .ruser{font-size:12.5px; color:#5b7684; margin-top:1px}
+  .rtitle{margin:0 0 13px; font-family:'Inter',sans-serif; font-size:21px; line-height:1.26; font-weight:700; color:#191919; letter-spacing:-.012em}
+  .rbody p{margin:0 0 13px; font-size:15px; line-height:1.62; color:#2e2c2a}
+  .rbody p:last-child{margin-bottom:0}
+
+  /* ===== subreddit-level win card (styled apart) ===== */
+  .card.win{border-color:#c7e6d4; border-left:5px solid var(--green); box-shadow:0 4px 16px rgba(46,125,82,.10)}
+  .card.win .card-head{background:linear-gradient(180deg,#f3faf6 0%,#fff 100%); border-bottom-color:#dcefe4}
+  .card.win .card-meta .sub{color:var(--green)}
+  .winnote{margin:0 0 16px; font-size:14px; color:#4a4038; background:#f3faf6; border:1px solid #dcefe4;
+    border-radius:10px; padding:13px 15px; max-width:78ch}
+  .winstats{display:flex; flex-wrap:wrap; gap:10px}
+  .winstats+.kw-row{margin-top:20px}
+  .winstat{background:#fff; border:1px solid #dcefe4; border-radius:11px; padding:12px 16px; min-width:150px}
+  .winstat b{display:block; font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--green); line-height:1.15}
+  .winstat span{display:block; margin-top:5px; font-size:10.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); font-weight:700}
+  .card.win .shot figcaption{background:#f3faf6; border-color:#dcefe4; border-left-color:var(--green)}
+
+  /* ===== screenshots ===== */
+  .shots{padding:8px 24px 24px}
+  .shot{margin:16px 0 0}
+  .shot figcaption{display:flex; align-items:center; gap:10px; margin-bottom:10px; background:#fbf6ef; border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:8px; padding:9px 14px}
+  .q-label{font-size:10.5px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:700}
+  .q-text{font-size:15px; font-weight:600; color:var(--navy)}
+  .shot a{display:block}
+  .shot img{width:100%; height:auto; display:block; border-radius:10px; border:1px solid var(--line); box-shadow:0 3px 14px rgba(28,22,17,.08)}
+  .shot img.phone{width:auto; max-width:min(100%,380px); margin:0 auto}
+  .shot-pair{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; justify-items:center}
+  .shot-pair img{width:100%; max-width:340px; height:auto; display:block; border-radius:10px; border:1px solid var(--line); box-shadow:0 3px 14px rgba(28,22,17,.08)}
+  @media (max-width:620px){ .shot-pair{grid-template-columns:1fr} }
+
+  /* ===== footer (cloned from M81 repo) ===== */
+  footer{max-width:1080px; margin:64px auto 0; padding:0 24px 66px; border-top:none; color:var(--muted); font-size:13px}
+  .m81card{position:relative; overflow:hidden; background:#fff; border-radius:30px; border:1px solid rgba(249,106,22,.18);
+    box-shadow:0 0 0 7px rgba(249,106,22,.04), 0 36px 90px rgba(249,106,22,.18); padding:46px 50px 42px; min-height:512px}
+  .m81card-inner{position:relative; z-index:2}
+  .m81-lock{display:flex; align-items:center; gap:11px}
+  .m81-lock img{height:36px; width:auto}
+  .m81-lock .bname{font-family:'Space Grotesk',sans-serif; font-size:32px; font-weight:700; color:#111}
+  .m81-watermark{position:absolute; left:0; right:0; bottom:34px; z-index:1; margin:0; text-align:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(44px,12vw,150px);
+    line-height:.82; letter-spacing:-.02em; color:#e0e0e0; white-space:nowrap; pointer-events:none}
+  .m81-method{margin-top:24px; border-top:1px solid #f0e8df; padding-top:22px}
+  .fineprint{color:#9a8c7c; font-size:14.5px; line-height:1.7; margin:0 0 16px}
+  .fineprint strong{color:#5b4f42}
+  .src{display:flex; flex-wrap:wrap; gap:18px; margin-top:10px}
+  .src span{background:#fbf6ef; border:1px solid #efe2d3; border-radius:8px; padding:7px 13px}
+
+  @media (max-width:900px){
+    .subs{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:760px){
+    thead{display:none}
+    table,tbody,tr,td{display:block; width:100%}
+    tbody tr{border-top:1px solid var(--line); padding:8px 0}
+    tbody td{border:none; padding:4px 16px}
+    td.num{display:none}
+    .sub-sm,.repcell{width:auto}
+    .hero h1{font-size:27px}
+    .brandrow{flex-wrap:wrap}
+    .metrics{grid-template-columns:1fr}
+    .subs{grid-template-columns:1fr}
+    .subcard{text-align:left; display:flex; align-items:center; gap:12px}
+    .subcard .srank{margin-bottom:0}
+    .rankers a{flex-wrap:wrap; gap:4px}
+    .rankers .rgo{margin-left:0}
+    .m81card{padding:32px 24px; min-height:320px; border-radius:22px}
+    .m81-watermark{font-size:44px; bottom:28px}
+  }
+  @media print{ body{background:#fff} .card,.table-wrap,.metric,.subcard{box-shadow:none} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-rings"></div>
+  <div class="hero-inner">
+    <div class="brandrow">
+      <img class="brandmark" src="m81-logo.png" alt="M81">
+      <div class="brandtext">
+        <div class="bl1"><b>M81</b></div>
+      </div>
+    </div>
+    <h1>Aesthetx: <span class="hl">Reddit</span> Report, Cycle 1</h1>
+    <p class="claim">Everything that went out for Aesthetx this cycle. The posts, the comments, and where they surfaced in Google, each backed by a live SERP screenshot.</p>
+    <p class="prepared">13 Jun – 1 Aug 2026 &nbsp;·&nbsp; Google &nbsp;·&nbsp; United States &nbsp;·&nbsp; Prepared by M81</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ SECTION 1 · TL;DR ============ -->
+  <section class="block">
+    <div class="block-head">
+      <h2>TL;DR</h2>
+      <p>What went out this cycle, at a glance.</p>
+    </div>
+    <div class="metrics">
+      <div class="metric">
+        <div class="mval">5</div>
+        <div class="mlab">Total posts</div>
+        <div class="mnote">Threads published across target subreddits.</div>
+      </div>
+      <div class="metric">
+        <div class="mval">155</div>
+        <div class="mlab">Total comments</div>
+        <div class="mnote">Comments received across our posts.</div>
+      </div>
+      <div class="metric">
+        <div class="mval">151</div>
+        <div class="mlab">Total upvotes</div>
+        <div class="mnote">Across every post and comment placed.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 2 · TOP SUBREDDITS ============ -->
+  <section class="block">
+    <div class="block-head">
+      <h2>Top 5 key subreddits</h2>
+      <p>The communities carrying the most weight for Aesthetx this cycle.</p>
+    </div>
+    <div class="subs">
+      <div class="subcard"><div class="srank">1</div><div class="sname">r/SFbitcheswithtaste</div><div class="scount">6 placements</div></div>
+      <div class="subcard"><div class="srank">2</div><div class="sname">r/PlasticSurgery</div><div class="scount">2 placements</div></div>
+      <div class="subcard"><div class="srank">3</div><div class="sname">r/tummytucksurgery</div><div class="scount">2 placements</div></div>
+      <div class="subcard"><div class="srank">4</div><div class="sname">r/milwaukee</div><div class="scount">1 placement</div></div>
+      <div class="subcard"><div class="srank">5</div><div class="sname">r/Reduction</div><div class="scount">1 placement</div></div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 3 · COMMENT INDEX ============ -->
+  <section class="block">
+    <div class="block-head">
+      <h2>Comments</h2>
+      <p>Every comment placed on someone else’s thread this cycle, with the subreddit it went into, the thread it sits under, and a direct link to the comment itself.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Subreddit</th><th>Post</th><th>Comment</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">01</td>
+            <td class="sub-sm">r/PlasticSurgery</td>
+            <td class="ctitle">Renuva injections for breasts: temporary or permanent?</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/PlasticSurgery/comments/1uwygb6/comment/p0apzjt" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">02</td>
+            <td class="sub-sm">r/SFbitcheswithtaste</td>
+            <td class="ctitle">SJ Dermatology recs</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/SFbitcheswithtaste/comments/1uwg611/comment/p0anfpo" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">03</td>
+            <td class="sub-sm">r/SFbitcheswithtaste</td>
+            <td class="ctitle">Need Help Quick!!!! Where are we going for natural filler results in Marin/SF?</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/SFbitcheswithtaste/comments/1up7j7b/comment/p0aqtno" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">04</td>
+            <td class="sub-sm">r/PlasticSurgery</td>
+            <td class="ctitle">Bay Area, CA Breast Implants</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/PlasticSurgery/comments/1uocsc5/comment/p0avewd" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">05</td>
+            <td class="sub-sm">r/SFbitcheswithtaste</td>
+            <td class="ctitle">Anyone here had a tummy tuck?</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/SFbitcheswithtaste/comments/1umnocc/comment/p07e9n1" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">06</td>
+            <td class="sub-sm">r/Reduction</td>
+            <td class="ctitle">Breast fat grafting recommendations – help!</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/Reduction/comments/1umlfts/comment/p09ani5" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">07</td>
+            <td class="sub-sm">r/tummytucksurgery</td>
+            <td class="ctitle">Anyone’s surgeon is in the Bay Area?</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/tummytucksurgery/comments/1um4n0p/comment/p07fur7" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">08</td>
+            <td class="sub-sm">r/SFbitcheswithtaste</td>
+            <td class="ctitle">Derms for acne scars</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/SFbitcheswithtaste/comments/1ukqc5u/comment/p0exxj2" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">09</td>
+            <td class="sub-sm">r/BeautyAddiction</td>
+            <td class="ctitle">Dermal fillers question and clinic in San Francisco?</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/BeautyAddiction/comments/1uis5jf/comment/p0v7937" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">10</td>
+            <td class="sub-sm">r/tummytucksurgery</td>
+            <td class="ctitle">Bay area or Sacramento tummy tuck</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/tummytucksurgery/comments/1uz3oav/comment/p110rr6" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">11</td>
+            <td class="sub-sm">r/ExplantSurgery</td>
+            <td class="ctitle">Struggling 3 months post-op</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/ExplantSurgery/comments/1u2emhr/comment/osqxqm9" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 4 · HIGHLIGHTS ============ -->
+  <section class="block">
+    <div class="block-head">
+      <h2>Highlights</h2>
+    </div>
+
+    <!-- ===== HIGHLIGHT 01 · Bay Area mommy makeover ===== -->
+    <article class="card" id="h01">
+      <div class="card-head">
+        <div class="card-meta"><span class="sub">r/SFbitcheswithtaste</span><span class="dot">·</span><span class="cpill">Ranking on 7 keywords</span><span class="cpill one">Subreddit-level win</span></div>
+        <div class="rpost">
+          <div class="rpost-head">
+            <div class="rav sf">SF</div>
+            <div>
+              <div class="rsubname">r/SFbitcheswithtaste<span class="rdot">·</span><span class="rtime">2mo ago</span></div>
+              <div class="ruser">Few-Departure3459</div>
+            </div>
+          </div>
+          <h3 class="rtitle">Bay area mommy makeover surgeon recommendations?</h3>
+          <div class="rbody">
+            <p>Hi everyone! I’ve been lurking here for a while and finally decided to post</p>
+            <p>I’m a mom of 3, all born within 4 years, and because of having so many kids so close together my body definitely didn’t bounce back to its original shape. I’m starting to seriously look into mommy makeover sometime later this year. I’m thinking tummy tuck with muscle repair and a breast lift, possibly lipo too, but I want to see what surgeons recommend after a consult</p>
+            <p>I’m in the san jose area and honestly feeling a little overwhelmed by how many surgeons there are around here. I’d really love to hear from anyone who has actually gone through the process locally here</p>
+            <p>I’m especially looking for someone who takes their time during the consultation and doesn’t make you feel rushed. I know I’m going to have like a million questions and i really want to feel comfortable asking them</p>
+            <p>Any recommendations, experiences or even surgeons to avoid would be appreciated. Thank you!!</p>
+          </div>
+        </div>
+        <p class="winnote">This one owned the community. It sat at <strong>#1 on r/SFbitcheswithtaste for the entire day</strong> and pulled 29k views — the top of the feed, all day, in front of exactly the audience Aesthetx is trying to reach.</p>
+        <div class="winstats">
+          <div class="winstat"><b>#1</b><span>Post on r/SFbitcheswithtaste</span></div>
+          <div class="winstat"><b>29k</b><span>Views</span></div>
+          <div class="winstat"><b>96.1%</b><span>US audience</span></div>
+        </div>
+        <div class="kw-row"><span class="kw-label">Ranks for 7 keywords</span><span class="kw">mommy makeover in SF</span><span class="kw">mommy makeover surgeon in bay area</span><span class="kw">best mommy makeover surgeon in bay area</span><span class="kw">bay area plastic surgeon recommendations</span><span class="kw">best surgeon in bay area for tummy tuck</span><span class="kw">mommy makeover in bay area reddit</span><span class="kw">best plastic surgeon bay area reddit</span></div>
+      </div>
+      <div class="shots">
+        <figure class="shot">
+          <figcaption><span class="q-label">Evidence</span><span class="q-text">Reddit post insights</span></figcaption>
+          <div class="shot-pair">
+            <a href="Aesthetx%20Report/post1-insights-a.jpg" target="_blank" rel="noopener"><img src="Aesthetx%20Report/post1-insights-a.jpg" alt="Reddit post insights showing the post ranked #1 on r/SFbitcheswithtaste" loading="lazy"></a>
+            <a href="Aesthetx%20Report/post1-insights-b.jpg" target="_blank" rel="noopener"><img src="Aesthetx%20Report/post1-insights-b.jpg" alt="Reddit post insights showing 29k views, 35 upvotes and 47 comments" loading="lazy"></a>
+          </div>
+        </figure>
+        <figure class="shot"><figcaption><span class="q-label">Keyword</span><span class="q-text">mommy makeover in SF</span></figcaption><a href="Aesthetx%20Report/image.png" target="_blank" rel="noopener"><img src="Aesthetx%20Report/image.png" alt="Google SERP ranking for mommy makeover in SF" loading="lazy"></a></figure>
+        <figure class="shot"><figcaption><span class="q-label">Keyword</span><span class="q-text">mommy makeover surgeon in bay area</span></figcaption><a href="Aesthetx%20Report/image%201.png" target="_blank" rel="noopener"><img src="Aesthetx%20Report/image%201.png" alt="Google SERP ranking for mommy makeover surgeon in bay area" loading="lazy"></a></figure>
+        <figure class="shot"><figcaption><span class="q-label">Keyword</span><span class="q-text">best mommy makeover surgeon in bay area</span></figcaption><a href="Aesthetx%20Report/image%202.png" target="_blank" rel="noopener"><img src="Aesthetx%20Report/image%202.png" alt="Google SERP ranking for best mommy makeover surgeon in bay area" loading="lazy"></a></figure>
+        <figure class="shot"><figcaption><span class="q-label">Keyword</span><span class="q-text">bay area plastic surgeon recommendations</span></figcaption><a href="Aesthetx%20Report/image%203.png" target="_blank" rel="noopener"><img src="Aesthetx%20Report/image%203.png" alt="Google SERP ranking for bay area plastic surgeon recommendations" loading="lazy"></a></figure>
+        <figure class="shot"><figcaption><span class="q-label">Keyword</span><span class="q-text">best surgeon in bay area for tummy tuck</span></figcaption><a href="Aesthetx%20Report/image%204.png" target="_blank" rel="noopener"><img src="Aesthetx%20Report/image%204.png" alt="Google SERP ranking for best surgeon in bay area for tummy tuck" loading="lazy"></a></figure>
+        <figure class="shot"><figcaption><span class="q-label">Keyword</span><span class="q-text">mommy makeover in bay area reddit</span></figcaption><a href="Aesthetx%20Report/image%205.png" target="_blank" rel="noopener"><img src="Aesthetx%20Report/image%205.png" alt="Google SERP ranking for mommy makeover in bay area reddit" loading="lazy"></a></figure>
+        <figure class="shot"><figcaption><span class="q-label">Keyword</span><span class="q-text">best plastic surgeon bay area reddit</span></figcaption><a href="Aesthetx%20Report/image%206.png" target="_blank" rel="noopener"><img src="Aesthetx%20Report/image%206.png" alt="Google SERP ranking for best plastic surgeon bay area reddit" loading="lazy"></a></figure>
+      </div>
+    </article>
+
+    <!-- ===== HIGHLIGHT 03 · Subreddit-level win (no external ranking) ===== -->
+    <article class="card win" id="h03">
+      <div class="card-head">
+        <div class="card-meta"><span class="sub">r/SFbitcheswithtaste</span><span class="dot">·</span><span class="cpill one">Subreddit-level win</span></div>
+        <div class="rpost">
+          <div class="rpost-head">
+            <div class="rav sf">SF</div>
+            <div>
+              <div class="rsubname">r/SFbitcheswithtaste<span class="rdot">·</span><span class="rtime">20d ago</span></div>
+              <div class="ruser">Informal_Wrap2297</div>
+            </div>
+          </div>
+          <h3 class="rtitle">Lost 80 lbs and now my breasts look terrible</h3>
+          <div class="rbody">
+            <p>So I lost about 80 lbs over the last year and a half and it’s been amazing. I feel better, i move better, but honestly I’ve become pretty self-conscious about the sagging that came with the weight loss.</p>
+            <p>I went from having full breasts to basically two deflated sacks hanging off my chest. I know how that sounds but it’s not an exaggeration. I did all this work to feel better about myself and now I avoid mirrors when I am getting dressed. Trying on bras is its own special kind of depressing. I don’t even know what size i am anymore because nothing fits right.</p>
+            <p>I’m pretty sure I need a lift, maybe implants too to get some volume back, but I’ve never had any work done so I really don’t know what to look for in a surgeon or what the right procedure even is for post weight loss breasts. I don’t want to go big or look obviously done, I just want them to look like normal breasts again. I feel like this is a specific enough situation that I’d rather go to someone who’s done a lot of these vs just a general plastic surgeon, if that makes sense.</p>
+            <p>If you’ve been through this after major weight loss, who did you go to? What did you get done and how did it turn out? I’m in the Bay Area but I’d travel for someone who really knows what they’re doing with this.</p>
+          </div>
+        </div>
+        <p class="winnote">This one owned the community. It sat at <strong>#1 on r/SFbitcheswithtaste for the entire day</strong> and pulled 32.7k views — the top of the feed, all day, in front of exactly the audience Aesthetx is trying to reach.</p>
+        <div class="winstats">
+          <div class="winstat"><b>#1</b><span>Post on r/SFbitcheswithtaste</span></div>
+          <div class="winstat"><b>32.7k</b><span>Views</span></div>
+        </div>
+      </div>
+      <div class="shots">
+        <figure class="shot"><figcaption><span class="q-label">Evidence</span><span class="q-text">Reddit post insights</span></figcaption><a href="Aesthetx%20Report/image%2012.png" target="_blank" rel="noopener"><img class="phone" src="Aesthetx%20Report/image%2012.png" alt="Reddit post insights showing the post ranked #1 on r/SFbitcheswithtaste with 32.7k views" loading="lazy"></a></figure>
+      </div>
+    </article>
+
+    <!-- ===== HIGHLIGHT 02 · Milwaukee rhinoplasty ===== -->
+    <article class="card" id="h02">
+      <div class="card-head">
+        <div class="card-meta"><span class="sub">r/milwaukee</span><span class="dot">·</span><span class="cpill">Ranking on 5 keywords</span></div>
+        <div class="rpost">
+          <div class="rpost-head">
+            <div class="rav mke">MK</div>
+            <div>
+              <div class="rsubname">r/milwaukee<span class="rdot">·</span><span class="rtime">26d ago</span></div>
+              <div class="ruser">anonymousnumber69</div>
+            </div>
+          </div>
+          <h3 class="rtitle">Rhinoplasty recs in the Milwaukee?</h3>
+          <div class="rbody">
+            <p>I’ve been wanting to get a nose job for a while now. I have a bump on my bridge. That’s always bothered me and I want something that looks more balanced with the rest of my face, there’s honestly too many surgeons to sort through on my own. Has anyone here gotten a rhinoplasty they were happy with?</p>
+            <p>Who did you go to and how was the experience?</p>
+          </div>
+        </div>
+        <div class="kw-row"><span class="kw-label">Ranks for 5 keywords</span><span class="kw">best rhinoplasty surgeon in Milwaukee</span><span class="kw">rhinoplasty recommendations milwaukee</span><span class="kw">nose job recommendations milwaukee</span><span class="kw">best surgeon recommendation for rhinoplasty in milwaukee</span><span class="kw">rhinoplasty in Milwaukee reddit</span></div>
+      </div>
+      <div class="shots">
+        <figure class="shot"><figcaption><span class="q-label">Keyword</span><span class="q-text">best rhinoplasty surgeon in Milwaukee</span></figcaption><a href="Aesthetx%20Report/image%207.png" target="_blank" rel="noopener"><img src="Aesthetx%20Report/image%207.png" alt="Google SERP ranking for best rhinoplasty surgeon in Milwaukee" loading="lazy"></a></figure>
+        <figure class="shot"><figcaption><span class="q-label">Keyword</span><span class="q-text">rhinoplasty recommendations milwaukee</span></figcaption><a href="Aesthetx%20Report/image%208.png" target="_blank" rel="noopener"><img src="Aesthetx%20Report/image%208.png" alt="Google SERP ranking for rhinoplasty recommendations milwaukee" loading="lazy"></a></figure>
+        <figure class="shot"><figcaption><span class="q-label">Keyword</span><span class="q-text">nose job recommendations milwaukee</span></figcaption><a href="Aesthetx%20Report/image%209.png" target="_blank" rel="noopener"><img src="Aesthetx%20Report/image%209.png" alt="Google SERP ranking for nose job recommendations milwaukee" loading="lazy"></a></figure>
+        <figure class="shot"><figcaption><span class="q-label">Keyword</span><span class="q-text">best surgeon recommendation for rhinoplasty in milwaukee</span></figcaption><a href="Aesthetx%20Report/image%2010.png" target="_blank" rel="noopener"><img src="Aesthetx%20Report/image%2010.png" alt="Google SERP ranking for best surgeon recommendation for rhinoplasty in milwaukee" loading="lazy"></a></figure>
+        <figure class="shot"><figcaption><span class="q-label">Keyword</span><span class="q-text">rhinoplasty in Milwaukee reddit</span></figcaption><a href="Aesthetx%20Report/image%2011.png" target="_blank" rel="noopener"><img src="Aesthetx%20Report/image%2011.png" alt="Google SERP ranking for rhinoplasty in Milwaukee reddit" loading="lazy"></a></figure>
+      </div>
+    </article>
+
+  </section>
+
+</div>
+
+<footer>
+  <div class="m81card">
+    <div class="m81-watermark">M81 MEDIA</div>
+    <div class="m81card-inner">
+      <div class="m81-lock"><img src="m81-logo.png" alt="M81"><span class="bname">M81</span></div>
+      <div class="m81-method">
+        <p class="fineprint"><strong>How we pulled this.</strong> Each ranking was captured from a live Google results page using SerpApi. The dark panel on the right of every screenshot is the raw API response for that search. Subreddit-level placement is captured from Reddit's own post insights. Rankings shift by location, device and over time, so these are snapshots from when we ran them.</p>
+        <div class="src">
+          <span>Search engine: Google</span><span>Location: United States</span><span>Device: Desktop</span><span>Source: SerpApi</span><span>Period: 13 Jun – 1 Aug 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
