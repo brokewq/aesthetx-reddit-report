@@ -78,6 +78,22 @@
     font-size:15px; line-height:1.6; color:#4a4038; max-width:78ch}
   .approach-close strong{color:var(--ink); font-weight:700}
 
+  /* ===== closing note + notion button ===== */
+  .signoff{position:relative; overflow:hidden; background:var(--card); border:1px solid var(--line);
+    border-radius:16px; padding:30px 32px; margin-top:22px; box-shadow:0 4px 16px rgba(28,22,17,.05);
+    display:flex; align-items:center; gap:32px; flex-wrap:wrap}
+  .signoff::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--accent)}
+  .signoff-text{margin:0; flex:1 1 430px; font-size:15.5px; line-height:1.64; color:#4a4038}
+  .notion-btn{flex:0 0 auto; display:inline-flex; align-items:center; gap:14px; text-decoration:none;
+    background:var(--navy); border:1px solid var(--navy); border-radius:12px; padding:15px 22px;
+    transition:background .15s ease, transform .15s ease}
+  .notion-btn:hover{background:#2f2620; transform:translateY(-1px)}
+  .notion-btn svg{width:23px; height:23px; fill:#fff; flex:none}
+  .notion-btn .nb-t{display:block; font-family:'Space Grotesk',sans-serif; font-weight:700;
+    font-size:14.5px; line-height:1.2; color:#fff; letter-spacing:-.01em}
+  .notion-btn .nb-s{display:block; margin-top:4px; font-size:12px; color:#bdb0a2}
+  .notion-btn .nb-go{color:#bdb0a2; font-size:15px; margin-left:4px}
+
   /* ===== TL;DR metric cards ===== */
   .metrics{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:22px}
   .metric{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px 22px;
@@ -202,6 +218,8 @@
     .approach{padding:22px 20px}
     .approach-lead{font-size:17px}
     .approach-list{grid-template-columns:1fr}
+    .signoff{padding:24px 20px; gap:22px}
+    .notion-btn{width:100%; justify-content:center}
     .subs{grid-template-columns:1fr}
     .subcard{text-align:left; display:flex; align-items:center; gap:12px}
     .subcard .srank{margin-bottom:0}
@@ -512,6 +530,24 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 5 · LOOKING AHEAD ============ -->
+  <section class="block">
+    <div class="block-head">
+      <h2>Looking ahead</h2>
+    </div>
+    <div class="signoff">
+      <p class="signoff-text">It has been a genuinely good cycle to work on, and we picked up a lot along the way about how these communities respond and what earns a place in them. All of it carries straight into the next cycle, and we are expecting stronger results from here.</p>
+      <a class="notion-btn" href="https://app.notion.com/p/Aesthetx-Consona-Competitors-3b1a97d36fac8017be95cbcbfa8973f8?source=copy_link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.98-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952l1.448.327s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.933.653.933 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.448-1.632z"/></svg>
+        <span>
+          <span class="nb-t">Next cycle posts</span>
+          <span class="nb-s">Open the Notion page</span>
+        </span>
+        <span class="nb-go">↗</span>
+      </a>
     </div>
   </section>
 
