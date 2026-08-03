@@ -63,7 +63,7 @@
   .block-head p{margin:6px 0 0 17px; color:var(--muted); font-size:14px; max-width:80ch}
 
   /* ===== TL;DR metric cards ===== */
-  .metrics{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:22px}
+  .metrics{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:22px}
   .metric{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px 22px;
     box-shadow:0 4px 16px rgba(28,22,17,.05); position:relative; overflow:hidden}
   .metric::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--accent)}
@@ -77,7 +77,7 @@
   .mval .tbd{font-size:19px; padding:8px 14px}
 
   /* ===== top subreddits ===== */
-  .subs{display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:22px}
+  .subs{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:22px}
   .subcard{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 16px;
     box-shadow:0 4px 16px rgba(28,22,17,.05); text-align:center}
   .subcard .srank{display:inline-grid; place-items:center; width:26px; height:26px; border-radius:8px;
@@ -170,6 +170,7 @@
   .src span{background:#fbf6ef; border:1px solid #efe2d3; border-radius:8px; padding:7px 13px}
 
   @media (max-width:900px){
+    .metrics{grid-template-columns:repeat(2,1fr)}
     .subs{grid-template-columns:repeat(2,1fr)}
   }
   @media (max-width:760px){
@@ -235,111 +236,31 @@
         <div class="mlab">Total upvotes</div>
         <div class="mnote">Across every post and comment placed.</div>
       </div>
+      <div class="metric">
+        <div class="mval">14</div>
+        <div class="mlab">Total branded comments</div>
+        <div class="mnote">Comments we seeded across posts.</div>
+      </div>
     </div>
   </section>
 
   <!-- ============ SECTION 2 · TOP SUBREDDITS ============ -->
   <section class="block">
     <div class="block-head">
-      <h2>Top 5 key subreddits</h2>
+      <h2>Top 3 key subreddits</h2>
       <p>The communities carrying the most weight for Aesthetx this cycle.</p>
     </div>
     <div class="subs">
       <div class="subcard"><div class="srank">1</div><div class="sname">r/SFbitcheswithtaste</div><div class="scount">6 placements</div></div>
       <div class="subcard"><div class="srank">2</div><div class="sname">r/PlasticSurgery</div><div class="scount">2 placements</div></div>
       <div class="subcard"><div class="srank">3</div><div class="sname">r/tummytucksurgery</div><div class="scount">2 placements</div></div>
-      <div class="subcard"><div class="srank">4</div><div class="sname">r/milwaukee</div><div class="scount">1 placement</div></div>
-      <div class="subcard"><div class="srank">5</div><div class="sname">r/Reduction</div><div class="scount">1 placement</div></div>
     </div>
   </section>
 
-  <!-- ============ SECTION 3 · COMMENT INDEX ============ -->
+  <!-- ============ SECTION 3 · POST HIGHLIGHTS ============ -->
   <section class="block">
     <div class="block-head">
-      <h2>Comments</h2>
-      <p>Every comment placed on someone else’s thread this cycle, with the subreddit it went into, the thread it sits under, and a direct link to the comment itself.</p>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>#</th><th>Subreddit</th><th>Post</th><th>Comment</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="num">01</td>
-            <td class="sub-sm">r/PlasticSurgery</td>
-            <td class="ctitle">Renuva injections for breasts: temporary or permanent?</td>
-            <td class="repcell"><a href="https://www.reddit.com/r/PlasticSurgery/comments/1uwygb6/comment/p0apzjt" target="_blank" rel="noopener">View ↗</a></td>
-          </tr>
-          <tr>
-            <td class="num">02</td>
-            <td class="sub-sm">r/SFbitcheswithtaste</td>
-            <td class="ctitle">SJ Dermatology recs</td>
-            <td class="repcell"><a href="https://www.reddit.com/r/SFbitcheswithtaste/comments/1uwg611/comment/p0anfpo" target="_blank" rel="noopener">View ↗</a></td>
-          </tr>
-          <tr>
-            <td class="num">03</td>
-            <td class="sub-sm">r/SFbitcheswithtaste</td>
-            <td class="ctitle">Need Help Quick!!!! Where are we going for natural filler results in Marin/SF?</td>
-            <td class="repcell"><a href="https://www.reddit.com/r/SFbitcheswithtaste/comments/1up7j7b/comment/p0aqtno" target="_blank" rel="noopener">View ↗</a></td>
-          </tr>
-          <tr>
-            <td class="num">04</td>
-            <td class="sub-sm">r/PlasticSurgery</td>
-            <td class="ctitle">Bay Area, CA Breast Implants</td>
-            <td class="repcell"><a href="https://www.reddit.com/r/PlasticSurgery/comments/1uocsc5/comment/p0avewd" target="_blank" rel="noopener">View ↗</a></td>
-          </tr>
-          <tr>
-            <td class="num">05</td>
-            <td class="sub-sm">r/SFbitcheswithtaste</td>
-            <td class="ctitle">Anyone here had a tummy tuck?</td>
-            <td class="repcell"><a href="https://www.reddit.com/r/SFbitcheswithtaste/comments/1umnocc/comment/p07e9n1" target="_blank" rel="noopener">View ↗</a></td>
-          </tr>
-          <tr>
-            <td class="num">06</td>
-            <td class="sub-sm">r/Reduction</td>
-            <td class="ctitle">Breast fat grafting recommendations – help!</td>
-            <td class="repcell"><a href="https://www.reddit.com/r/Reduction/comments/1umlfts/comment/p09ani5" target="_blank" rel="noopener">View ↗</a></td>
-          </tr>
-          <tr>
-            <td class="num">07</td>
-            <td class="sub-sm">r/tummytucksurgery</td>
-            <td class="ctitle">Anyone’s surgeon is in the Bay Area?</td>
-            <td class="repcell"><a href="https://www.reddit.com/r/tummytucksurgery/comments/1um4n0p/comment/p07fur7" target="_blank" rel="noopener">View ↗</a></td>
-          </tr>
-          <tr>
-            <td class="num">08</td>
-            <td class="sub-sm">r/SFbitcheswithtaste</td>
-            <td class="ctitle">Derms for acne scars</td>
-            <td class="repcell"><a href="https://www.reddit.com/r/SFbitcheswithtaste/comments/1ukqc5u/comment/p0exxj2" target="_blank" rel="noopener">View ↗</a></td>
-          </tr>
-          <tr>
-            <td class="num">09</td>
-            <td class="sub-sm">r/BeautyAddiction</td>
-            <td class="ctitle">Dermal fillers question and clinic in San Francisco?</td>
-            <td class="repcell"><a href="https://www.reddit.com/r/BeautyAddiction/comments/1uis5jf/comment/p0v7937" target="_blank" rel="noopener">View ↗</a></td>
-          </tr>
-          <tr>
-            <td class="num">10</td>
-            <td class="sub-sm">r/tummytucksurgery</td>
-            <td class="ctitle">Bay area or Sacramento tummy tuck</td>
-            <td class="repcell"><a href="https://www.reddit.com/r/tummytucksurgery/comments/1uz3oav/comment/p110rr6" target="_blank" rel="noopener">View ↗</a></td>
-          </tr>
-          <tr>
-            <td class="num">11</td>
-            <td class="sub-sm">r/ExplantSurgery</td>
-            <td class="ctitle">Struggling 3 months post-op</td>
-            <td class="repcell"><a href="https://www.reddit.com/r/ExplantSurgery/comments/1u2emhr/comment/osqxqm9" target="_blank" rel="noopener">View ↗</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ============ SECTION 4 · HIGHLIGHTS ============ -->
-  <section class="block">
-    <div class="block-head">
-      <h2>Highlights</h2>
+      <h2>Post Highlights</h2>
     </div>
 
     <!-- ===== HIGHLIGHT 01 · Bay Area mommy makeover ===== -->
@@ -448,6 +369,89 @@
       </div>
     </article>
 
+  </section>
+
+  <!-- ============ SECTION 4 · COMMENT INDEX ============ -->
+  <section class="block">
+    <div class="block-head">
+      <h2>Comments</h2>
+      <p>Every comment placed on someone else’s thread this cycle, with the subreddit it went into, the thread it sits under, and a direct link to the comment itself.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Subreddit</th><th>Post</th><th>Comment</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">01</td>
+            <td class="sub-sm">r/PlasticSurgery</td>
+            <td class="ctitle">Renuva injections for breasts: temporary or permanent?</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/PlasticSurgery/comments/1uwygb6/comment/p0apzjt" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">02</td>
+            <td class="sub-sm">r/SFbitcheswithtaste</td>
+            <td class="ctitle">SJ Dermatology recs</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/SFbitcheswithtaste/comments/1uwg611/comment/p0anfpo" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">03</td>
+            <td class="sub-sm">r/SFbitcheswithtaste</td>
+            <td class="ctitle">Need Help Quick!!!! Where are we going for natural filler results in Marin/SF?</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/SFbitcheswithtaste/comments/1up7j7b/comment/p0aqtno" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">04</td>
+            <td class="sub-sm">r/PlasticSurgery</td>
+            <td class="ctitle">Bay Area, CA Breast Implants</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/PlasticSurgery/comments/1uocsc5/comment/p0avewd" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">05</td>
+            <td class="sub-sm">r/SFbitcheswithtaste</td>
+            <td class="ctitle">Anyone here had a tummy tuck?</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/SFbitcheswithtaste/comments/1umnocc/comment/p07e9n1" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">06</td>
+            <td class="sub-sm">r/Reduction</td>
+            <td class="ctitle">Breast fat grafting recommendations – help!</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/Reduction/comments/1umlfts/comment/p09ani5" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">07</td>
+            <td class="sub-sm">r/tummytucksurgery</td>
+            <td class="ctitle">Anyone’s surgeon is in the Bay Area?</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/tummytucksurgery/comments/1um4n0p/comment/p07fur7" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">08</td>
+            <td class="sub-sm">r/SFbitcheswithtaste</td>
+            <td class="ctitle">Derms for acne scars</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/SFbitcheswithtaste/comments/1ukqc5u/comment/p0exxj2" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">09</td>
+            <td class="sub-sm">r/BeautyAddiction</td>
+            <td class="ctitle">Dermal fillers question and clinic in San Francisco?</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/BeautyAddiction/comments/1uis5jf/comment/p0v7937" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">10</td>
+            <td class="sub-sm">r/tummytucksurgery</td>
+            <td class="ctitle">Bay area or Sacramento tummy tuck</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/tummytucksurgery/comments/1uz3oav/comment/p110rr6" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+          <tr>
+            <td class="num">11</td>
+            <td class="sub-sm">r/ExplantSurgery</td>
+            <td class="ctitle">Struggling 3 months post-op</td>
+            <td class="repcell"><a href="https://www.reddit.com/r/ExplantSurgery/comments/1u2emhr/comment/osqxqm9" target="_blank" rel="noopener">View ↗</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
 </div>
