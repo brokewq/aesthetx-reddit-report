@@ -61,7 +61,22 @@
   .block-head h2{margin:0; font-size:23px; color:var(--navy); font-weight:700; display:flex; align-items:center; gap:12px}
   .block-head h2::before{content:""; width:5px; height:24px; background:var(--accent); border-radius:3px; display:inline-block}
   .block-head p{margin:6px 0 0 17px; color:var(--muted); font-size:14px; max-width:80ch}
-  .block-head p.lede{margin-top:12px; color:#4a4038; font-size:15.5px; line-height:1.62; max-width:76ch}
+
+  /* ===== approach panel (post highlights intro) ===== */
+  .approach{position:relative; overflow:hidden; background:var(--card); border:1px solid var(--line);
+    border-radius:16px; padding:28px 30px; margin-top:22px; box-shadow:0 4px 16px rgba(28,22,17,.05)}
+  .approach::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--accent)}
+  .approach-lead{margin:0 0 20px; font-family:'Space Grotesk',sans-serif; font-size:18.5px; line-height:1.44;
+    font-weight:600; color:var(--ink); letter-spacing:-.01em; max-width:70ch}
+  .approach-label{display:block; margin-bottom:12px; font-size:10.5px; font-weight:700;
+    text-transform:uppercase; letter-spacing:.11em; color:var(--muted)}
+  .approach-list{list-style:none; margin:0 0 20px; padding:0; display:grid; grid-template-columns:repeat(2,1fr); gap:11px 26px}
+  .approach-list li{position:relative; padding-left:23px; font-size:14.5px; line-height:1.5; color:#4a4038}
+  .approach-list li::before{content:""; position:absolute; left:0; top:7px; width:8px; height:8px;
+    border-radius:50%; background:var(--accent); opacity:.5}
+  .approach-close{margin:0; padding-top:18px; border-top:1px solid var(--line);
+    font-size:15px; line-height:1.6; color:#4a4038; max-width:78ch}
+  .approach-close strong{color:var(--ink); font-weight:700}
 
   /* ===== TL;DR metric cards ===== */
   .metrics{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:22px}
@@ -184,6 +199,9 @@
     .hero h1{font-size:27px}
     .brandrow{flex-wrap:wrap}
     .metrics{grid-template-columns:1fr}
+    .approach{padding:22px 20px}
+    .approach-lead{font-size:17px}
+    .approach-list{grid-template-columns:1fr}
     .subs{grid-template-columns:1fr}
     .subcard{text-align:left; display:flex; align-items:center; gap:12px}
     .subcard .srank{margin-bottom:0}
@@ -262,7 +280,18 @@
   <section class="block">
     <div class="block-head">
       <h2>Post Highlights</h2>
-      <p class="lede">Every subreddit runs on its own unwritten rules. Before anything went live for Aesthetx, we studied each community we planned to post in: the questions that come up week after week, the topics that pull genuine discussion, the tone people expect from someone asking for help, and the things that get a post dismissed on sight. That groundwork is what the results below are built on, because a post only performs when it reads like it belongs. When it does, the community does the rest, and two of the three posts here held the number one spot in their subreddit for a full day.</p>
+    </div>
+
+    <div class="approach">
+      <p class="approach-lead">Every subreddit runs on its own unwritten rules. Before anything went live for Aesthetx, we studied each community we planned to post in.</p>
+      <span class="approach-label">What we looked at</span>
+      <ul class="approach-list">
+        <li>The questions that come up week after week</li>
+        <li>The topics that pull genuine discussion</li>
+        <li>The tone people expect from someone asking for help</li>
+        <li>The things that get a post dismissed on sight</li>
+      </ul>
+      <p class="approach-close">That groundwork is what the results below are built on. A post only performs when it reads like it belongs, and when it does, the community does the rest. <strong>Two of the three posts here held the number one spot in their subreddit for a full day.</strong></p>
     </div>
 
     <!-- ===== HIGHLIGHT 01 · Bay Area mommy makeover ===== -->
